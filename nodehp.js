@@ -18,16 +18,17 @@ var crypto = require('crypto'), shasum = crypto.createHash('sha1');
 
 var len, type, lenIdent, serverName, nonce = "0000";
 
+// create socket
 var client = new net.Socket();
 
 module.exports = {
 		publish: function(PORT, HOST, CHANNEL, PAYLOAD, secret, identifier) {
 
+
+// connect to socket
 client.connect(PORT, HOST, function() {
 
     console.log('CONNECTED TO: ' + HOST + ':' + PORT);
-    // Write a message to the socket as soon as the client is connected, the server will receive it as message from the client 
-    //client.write('I am Chuck Norris!');
 
 });
 
@@ -53,7 +54,6 @@ client.on('data', function(data) {
     .tap(function (vars) {
         
         this.skip(vars.lenIdent)
-        //this.word32bu('nonce')
         this.buffer('nonce', 4)
         console.dir(vars);
         
