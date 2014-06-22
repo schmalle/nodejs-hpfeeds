@@ -16,19 +16,12 @@ var S = require('string');
 var net = require('net');
 var crypto = require('crypto'), shasum = crypto.createHash('sha1');
 
-var HOST = 'hpfeeds.honeycloud.net';
-var CHANNEL = "test";
-var PORT = 10000;
-var PAYLOAD = "test_flake";
-
 var len, type, lenIdent, serverName, nonce = "0000";
-
-
-var secret = 		 "YOUR_SECRET";
-var identifier = "YOUR_IDENTIFIER";
 
 var client = new net.Socket();
 
+module.exports = {
+		publish: function(PORT, HOST, CHANNEL, PAYLOAD, secret, identifier) {
 
 client.connect(PORT, HOST, function() {
 
@@ -145,3 +138,6 @@ client.on('close', function() {
     console.log('Connection closed');
 });
 
+}	 // publish function
+
+}; // module exports
