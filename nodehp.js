@@ -3,6 +3,7 @@
 //
 // simple NodeJS hp feeds client code
 // written by Markus Schmall
+//
 // 
 // npm install string
 // npm install put
@@ -35,9 +36,7 @@ client.connect(PORT, HOST, function() {
 // Add a 'data' event handler for the client socket
 // data is what the server sent to this socket
 client.on('data', function(data) {
-    
-    console.log('Recieved ' + S(data).length + ' bytes');
-    
+        
     // now dissect hp feed format
     // 4 byte length of entire packet (S(data).length)
     // 1 Byte Type
@@ -90,10 +89,8 @@ client.on('data', function(data) {
     	.buffer()
 		;
 
-		console.log(authBuf);
  
- 		// send data to server
- 
+ 		// send data to server 
  		client.write(authBuf);
  
 
