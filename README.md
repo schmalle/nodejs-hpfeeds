@@ -13,6 +13,4 @@ Host: Hpfeeds broker
 Channel: Channel to be published to
 Payload: Data to be published
 secret: you name it
-identifier: identifier
-
-
+identifier: identifier (authkey)
