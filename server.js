@@ -94,6 +94,7 @@ net.createServer(function (socket) {
                     identifier= vars.identifier;
                     channel = vars.channel;
                     payload = vars.payload;
+                    len = vars.len;
 
                 }
 
@@ -109,7 +110,7 @@ net.createServer(function (socket) {
         }
 
         if (type == 3) {
-            console.log ("   Publish packet with channel: " + channel.toString() + " and identifier " + identifier.toString())
+            console.log ("   Publish packet with channel: " + channel.toString() + " and identifier " + identifier.toString() + " and len " + len.toString())
             console.log(hexdump(payload))
         }
 
@@ -138,7 +139,7 @@ net.createServer(function (socket) {
         process.stdout.write(message)
     }
 
-}).listen(5000);
+}).listen(10000);
 
 // Put a friendly message on the terminal of the server.
-console.log("HpFeeds server running at port 5000\n");
+console.log("HpFeeds server running at port 10000\n");
