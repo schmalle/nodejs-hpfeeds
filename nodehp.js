@@ -83,9 +83,9 @@ client.on('data', function(data) {
 		var authBuf = put()
     	.word32be(authLen)
     	.word8(2)															// AUTH PACKET
-    	.word8(S(identifier).length)					// LENGTH IDENTIFIER
-    	.put(new Buffer(identifier, 'ascii'))	// LENGTH IDENTIFIER
-    	.put(binOut)													// LENGTH HASH
+    	.word8(S(identifier).length)										// LENGTH IDENTIFIER
+    	.put(new Buffer(identifier, 'ascii'))								// LENGTH IDENTIFIER
+    	.put(binOut)														// LENGTH HASH
     	.buffer()
 		;
 
@@ -108,11 +108,11 @@ client.on('data', function(data) {
 		var pubBuf = put()
     	.word32be(publishLen)
     	.word8(3)															// PUBLISH PACKET
-    	.word8(S(identifier).length)					// LENGTH IDENTIFIER
-    	.put(new Buffer(identifier, 'ascii'))	// IDENTIFIER
-    	.word8(S(CHANNEL).length)							// LENGTH CHANNEL
-    	.put(new Buffer(CHANNEL, 'ascii'))		// CHANNEL
-    	.put(new Buffer(PAYLOAD, 'ascii'))		// PAYLOAD
+    	.word8(S(identifier).length)										// LENGTH IDENTIFIER
+    	.put(new Buffer(identifier, 'ascii'))								// IDENTIFIER
+    	.word8(S(CHANNEL).length)											// LENGTH CHANNEL
+    	.put(new Buffer(CHANNEL, 'ascii'))									// CHANNEL
+    	.put(new Buffer(PAYLOAD, 'ascii'))									// PAYLOAD
 
     	.buffer()
 		;
