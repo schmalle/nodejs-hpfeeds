@@ -8,9 +8,17 @@ var libxmljs = require("libxmljs");
 fs = require('fs')
 
 
-function readFileXML(callback) {
+module.exports = {
 
-    var xml;
+    parseEWS: function (data) {
+
+        parseXML(data)
+
+    }
+};
+
+
+function readFileXML(callback) {
 
     fs.readFile("/opt/request.xml", 'utf8', function (err,data) {
         if (err) {
@@ -18,13 +26,16 @@ function readFileXML(callback) {
             callback(null);
         }
         //console.log(data);
-        xml = data
+
         callback(data)
 
     });
 
 }
 
+/*
+    Parses a dedicacted alert node
+ */
 function parseAlert(alertNode) {
 
     var children = alertNode.childNodes();
@@ -45,7 +56,6 @@ function parseAlert(alertNode) {
         childRunner++;
 
     }
-
 
 }
 
@@ -68,11 +78,10 @@ function parseXML(data) {
         }
 
         childRunner++;
-
     }
 
 }
 
-var xml = readFileXML(parseXML);
+//var xml = readFileXML(parseXML);
 
 
