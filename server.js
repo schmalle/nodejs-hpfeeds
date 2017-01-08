@@ -33,7 +33,7 @@ module.exports = {
 
 
 
-    startServer: function (port, useews, verbose) {
+    startServer: function (port, useews, verbose, useredis) {
 
 
         //
@@ -143,7 +143,7 @@ module.exports = {
 
                                     byteRunner += 6 + vars.lenIdent + 1 + lenChannel + lenPayload
 
-                                    if (useews) ewsParser.parseEWS(payload)
+                                    if (useews) ewsParser.parseEWS(payload, useredis)
 
                                 }
 

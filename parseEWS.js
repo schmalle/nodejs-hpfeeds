@@ -5,14 +5,16 @@
 // npm install libxmljs
 
 var libxmljs = require("libxmljs");
-fs = require('fs')
+var redis = require("./redis");
+var fs = require('fs');
+var helper = require("./helper");
 
 
 module.exports = {
 
-    parseEWS: function (data) {
+    parseEWS: function (data, useredis) {
 
-        parseXML(data)
+        parseXML(data, useredis)
 
     }
 };
@@ -36,7 +38,7 @@ function readFileXML(callback) {
 /*
     Parses a dedicacted alert node
  */
-function parseAlert(alertNode) {
+function parseAlert(alertNode, useredis) {
 
     var children = alertNode.childNodes();
 
@@ -51,6 +53,10 @@ function parseAlert(alertNode) {
             var targetPort = children[childRunner].attr('port').value()
             console.log("Attack on port " + targetPort)
 
+            if (useredis) {
+                redis.increaseKey(helper.getDateTime() + ":" + targetPort)
+            }
+
         }
 
         childRunner++;
@@ -59,7 +65,7 @@ function parseAlert(alertNode) {
 
 }
 
-function parseXML(data) {
+function parseXML(data, useredis) {
 
     //console.log(data)
 
@@ -73,7 +79,7 @@ function parseXML(data) {
 
         if ("Alert" == children[childRunner].name()) {
 
-            parseAlert(children[childRunner])
+            parseAlert(children[childRunner], useredis)
 
         }
 
