@@ -19,4 +19,7 @@ identifier: identifier (authkey)
 
 
  
- 
+$ sudo npm install -g node-gyp
+$ cd node_modules/libxmljs
+$ node-gyp rebuild
+

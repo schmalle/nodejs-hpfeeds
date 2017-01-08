@@ -12,9 +12,9 @@ var helper = require("./helper");
 
 module.exports = {
 
-    parseEWS: function (data, useredis) {
+    parseEWS: function (data, useredis, verbose) {
 
-        parseXML(data, useredis)
+        parseXML(data, useredis, verbose)
 
     }
 };
@@ -38,7 +38,7 @@ function readFileXML(callback) {
 /*
     Parses a dedicacted alert node
  */
-function parseAlert(alertNode, useredis) {
+function parseAlert(alertNode, useredis, verbose) {
 
     var children = alertNode.childNodes();
 
@@ -51,7 +51,7 @@ function parseAlert(alertNode, useredis) {
         if ("Target" == children[childRunner].name()) {
 
             var targetPort = children[childRunner].attr('port').value()
-            console.log("Attack on port " + targetPort)
+            if (verbose) console.log("Attack on port " + targetPort)
 
             if (useredis) {
                 redis.increaseKey(helper.getDateTime() + ":" + targetPort)
@@ -65,7 +65,7 @@ function parseAlert(alertNode, useredis) {
 
 }
 
-function parseXML(data, useredis) {
+function parseXML(data, useredis, verbose) {
 
     //console.log(data)
 
@@ -79,7 +79,7 @@ function parseXML(data, useredis) {
 
         if ("Alert" == children[childRunner].name()) {
 
-            parseAlert(children[childRunner], useredis)
+            parseAlert(children[childRunner], useredis, verbose)
 
         }
 

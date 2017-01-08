@@ -68,7 +68,7 @@ module.exports = {
 
                 img.push(data)
 
-                console.log("Recieved " + data.size + " bytes....")
+                if (verbose) console.log("Recieved " + data.size + " bytes....")
 
             });
 
@@ -93,7 +93,7 @@ module.exports = {
 
                         while (byteRunner <= lenCompletePacket - 1) {
 
-                            console.log("Starting scan loop at offset " + byteRunner + " from total length  " + lenCompletePacket)
+                            if (verbose) console.log("Starting scan loop at offset " + byteRunner + " from total length  " + lenCompletePacket)
 
                             this.word32bu('len')
                             this.word8bu('type')
@@ -143,18 +143,18 @@ module.exports = {
 
                                     byteRunner += 6 + vars.lenIdent + 1 + lenChannel + lenPayload
 
-                                    if (useews) ewsParser.parseEWS(payload, useredis)
+                                    if (useews) ewsParser.parseEWS(payload, useredis, verbose)
 
                                 }
 
                                 if (type == 2) {
-                                    console.log("Auth packet with identifier: " + identifier.toString() + " and hash")
-                                    console.log(hexdump(authHash))
+                                    if (verbose) console.log("Auth packet with identifier: " + identifier.toString() + " and hash")
+                                    if (verbose) console.log(hexdump(authHash))
                                 }
 
                                 if (type == 3) {
-                                    console.log("   Publish packet with channel: " + channel.toString() + " and identifier " + identifier.toString() + " and len " + len.toString() + " and payload " + payload.toString())
-                                    console.log(hexdump(payload))
+                                    if (verbose) console.log("   Publish packet with channel: " + channel.toString() + " and identifier " + identifier.toString() + " and len " + len.toString() + " and payload " + payload.toString())
+                                    if (verbose) console.log(hexdump(payload))
                                 }
 
                             })
@@ -170,7 +170,7 @@ module.exports = {
         }).listen(port);
 
         // Put a friendly message on the terminal of the server.
-        console.log("HpFeeds server running at port " + port);
+        if (verbose) console.log("HpFeeds server running at port " + port);
 
     }   // startServer function
 
