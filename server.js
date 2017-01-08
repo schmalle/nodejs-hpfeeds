@@ -97,20 +97,9 @@ net.createServer(function (socket) {
                     this.tap(function (vars) {
 
 
-                        var identifierTest = [];
-                        var copyRunner = 0;
+                        this.buffer('identifier', vars.lenIdent)
 
-                        while (copyRunner <= vars.lenIdent -1) {
-
-                            this.word8bu('copyByte')
-                            identifierTest = identifierTest.concat(vars.copyByte)
-                            copyRunner++;
-
-                        }
-
-                        var testMe = Buffer.from(identifierTest)
-                        identifier = testMe.toString()
-
+                        identifier = vars.identifier
                         lenIdent = vars.lenIdent;
                         type = vars.type;
 
