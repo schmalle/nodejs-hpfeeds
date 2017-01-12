@@ -25,6 +25,7 @@
     "mocha": "^1.20.1"
   },
   "dependencies": {
-    "socket.io": "^1.7.2"
+
+
   }
 }

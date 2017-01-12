@@ -123,7 +123,7 @@ module.exports = {
                                 //
                                 // check for PUBLISH packet
                                 //
-                                if (vars.type == 3) {
+                                else if (vars.type == 3) {
 
 
                                     this.word8bu('lenChannel')
@@ -145,6 +145,12 @@ module.exports = {
 
                                     if (useews) ewsParser.parseEWS(payload, useredis, verbose)
 
+                                }
+
+                                else
+                                {
+                                    console.log("Error: Unknown packet found: " + bytes)
+                                    byteRunner = lenCompletePacket
                                 }
 
                                 if (type == 2) {
