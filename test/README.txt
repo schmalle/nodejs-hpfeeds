@@ -1,1 +1,4 @@
-To run the test, please copy the file request.xml to /opt/request.xml
+To run the test, please copy the files
+
+request.json.txt to /opt/
+request.xml to /opt/ .

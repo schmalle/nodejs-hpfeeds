@@ -3,4 +3,4 @@
 //
 
 var myHpFeedsServer = require ("./server");
-myHpFeedsServer.startServer(10000, true, false, true) // port 10000 useEWS = true verbose = false useredis = true
+myHpFeedsServer.startServer(10000, true, true, true) // port 10000 useEWS = true verbose = false useredis = true

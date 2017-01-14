@@ -13,7 +13,7 @@ function startTest(callback) {
         }
         //console.log(data);
         xml = data
-        callback(10000, "127.0.0.1", "ChannelName", data, "SECRET", "MeineID")
+        callback("10000", "127.0.0.1", "ChannelName", data, "SECRET", "MeineID")
 
     });
 

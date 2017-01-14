@@ -23,3 +23,9 @@ $ sudo npm install -g node-gyp
 $ cd node_modules/libxmljs
 $ node-gyp rebuild
 
+
+
+forever start start.js -l mylog.txt --workingDir /opt/nodejs-hpfeeds/ --sourceDir /opt/nodejs-hpfeeds/ -o ./mylogo.txt -e ./error.log
+
+
+Ensure, that Redis only listens on local interface

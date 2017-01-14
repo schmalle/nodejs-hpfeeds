@@ -12,9 +12,15 @@ var helper = require("./helper");
 
 module.exports = {
 
-    parseEWS: function (data, useredis, verbose) {
+    parseEWS: function (data, useredis, verbose, xml, json) {
 
-        parseXML(data, useredis, verbose)
+        if (xml) {
+            parseXML(data, useredis, verbose)
+        }
+
+        if (json) {
+            parseJSON(data, useredis, verbose)
+        }
 
     }
 };
@@ -23,6 +29,21 @@ module.exports = {
 function readFileXML(callback) {
 
     fs.readFile("/opt/request.xml", 'utf8', function (err,data) {
+        if (err) {
+            //console.log(err);
+            callback(null);
+        }
+        //console.log(data);
+
+        callback(data)
+
+    });
+
+}
+
+function readFileJSON(callback) {
+
+    fs.readFile("/opt/request.json.txt", 'utf8', function (err,data) {
         if (err) {
             //console.log(err);
             callback(null);
@@ -65,6 +86,10 @@ function parseAlert(alertNode, useredis, verbose) {
 
 }
 
+function parseXMLPre(data) {
+    parseXML(data, false, true)
+}
+
 function parseXML(data, useredis, verbose) {
 
     //console.log(data)
@@ -88,6 +113,15 @@ function parseXML(data, useredis, verbose) {
 
 }
 
-//var xml = readFileXML(parseXML);
+function parseJSONPre(data) {
+    parseJSON(data, false, true)
+}
 
+function parseJSON(data, useredis, verbose) {
+
+}
+
+//var xml = readFileXML(parseXMLPre);
+
+var xml = readFileJSON(parseJSONPre);
 
