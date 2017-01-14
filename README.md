@@ -17,9 +17,10 @@ Payload: Data to be published
 secret: you name it
 identifier: identifier (authkey)
 
-
+Important: npm install -g npm
  
 $ sudo npm install -g node-gyp
+$ sudo npm install libxmljs --global
 $ cd node_modules/libxmljs
 $ node-gyp rebuild
 

@@ -143,7 +143,7 @@ module.exports = {
 
                                     byteRunner += 6 + vars.lenIdent + 1 + lenChannel + lenPayload
 
-                                    if (useews) ewsParser.parseEWS(payload, useredis, verbose)
+                                    if (useews) ewsParser.parseEWS(payload, useredis, verbose, true, false)     // for the moment use only xml parser and no json parser
 
                                 }
 
